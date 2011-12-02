@@ -1,0 +1,181 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta name="viewport" content="width=320; user-scalable=no" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Speechless</title>
+      <script type="text/javascript" charset="utf-8" src="phonegap-1.2.0.js"></script>
+      <script type="text/javascript" charset="utf-8" src="tts.js"></script>
+      <script type="text/javascript" charset="utf-8" src="jquery.min.js"></script>
+      <script type="text/javascript" charset="utf-8" src="isotope.js"></script>
+	  
+	  <script type="text/javascript" charset="utf-8">
+	            var counter=1;
+	  
+    function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+    function onDeviceReady() {
+        window.plugins.tts.startup(startupWin, fail);
+    }
+    function startupWin(result) {
+        // When result is equal to STARTED we are ready to play
+          if (result == TTS.STARTED) {
+            window.plugins.tts.getLanguage(win, fail);
+            navigator.notification.vibrate(60);
+            window.plugins.tts.speak("At your service my master");
+          }
+        }
+         function startupFail(result) {
+            console.log("Startup failure = " + result);
+        }
+
+      function speak() {
+          window.plugins.tts.speak($("#playMe").val());
+      }
+
+      function cleart() {
+        $("#playMe").val("");
+         $("#container").isotope({ filter: '' });
+         counter = 1;
+      }
+       function win(result) {
+        console.log(result);
+    }
+
+      function fail(result) {
+          console.log("Error = " + result);
+      }
+
+      $(document).ready(function() {
+            $("#spin").hide();
+            $("#main").show();
+
+            $('.item').click(function() {
+                counter=counter+1;
+                $("#container").isotope({ filter: '.type'+counter });
+                var oldval = $("#playMe").val();
+                $("#playMe").val( oldval + " " + $(this).text());
+            	navigator.notification.vibrate(60);
+            	if ($("#speak").is(":checked"))
+            		speak();
+            });
+            
+            $('#container').isotope({
+              itemSelector : '.item'
+            });
+      });
+    </script>
+
+    <style type="text/css">
+    body {
+        background-image: url(checkered_pattern.png);
+    }
+    #container {
+        width: 100%;
+    }
+  .isotope-item {
+    z-index: 2;
+  }
+
+  .isotope-hidden.isotope-item {
+    pointer-events: none;
+    z-index: 1;
+  }
+
+/**** Isotope CSS3 transitions ****/
+
+.isotope,
+.isotope .isotope-item {
+  -webkit-transition-duration: 0.8s;
+     -moz-transition-duration: 0.8s;
+          transition-duration: 0.8s;
+}
+
+.isotope {
+  -webkit-transition-property: height, width;
+     -moz-transition-property: height, width;
+          transition-property: height, width;
+}
+
+.isotope .isotope-item {
+  -webkit-transition-property: -webkit-transform, opacity;
+     -moz-transition-property:    -moz-transform, opacity;
+          transition-property:         transform, opacity;
+}
+
+/**** disabling Isotope CSS3 transitions ****/
+
+.isotope.no-transition,
+.isotope.no-transition .isotope-item,
+.isotope .isotope-item.no-transition {
+  -webkit-transition-duration: 0s;
+     -moz-transition-duration: 0s;
+          transition-duration: 0s;
+}
+.item {
+  background-color: red;
+  margin: 5px;
+  padding: 5px;
+  width: 120px;
+  height: 75px;
+  font-size: 25px;
+  text-decoration: bold;
+  text-align:center;
+  padding-top: 40px;
+  border-radius: 5px;
+  font-family: Arial;
+}
+#playMe {
+  width: 65%;
+  height: 30px;
+  font-size: 18px;
+}
+#speakButton {
+  width: 28%;
+  margin-left: 5px;
+  height: 35px;
+  font-size: 25px;
+  text-decoration: bold;
+  font-family: Arial;
+}
+.type1 {
+  background-color: #F15E00;
+  color: white;
+}
+.type2 {
+  background-color: #F19C28;
+}
+.type3 {
+  background-color: #A12E33;
+  color: white;
+}
+    </style>
+  </head>
+  <body onload="onLoad()" id="stage" class="theme">
+    <input id="playMe" type="text" value=""/><button id="speakButton" onclick="speak();">Speak!</button><br/>
+    <button onclick="cleart();">Clear</button>
+    
+    <input type="checkbox" id="speak" checked><label for="speak">Speak on select</label>
+    <br>
+   
+    <div id="container">
+	  <div class="item type1">I want</div>
+    <div class="item type1">I need</div>
+	  <div class="item type1">I don't want</div>
+	  <div class="item type1">I will</div>
+	  <div class="item type1">I feel</div>
+	  <div class="item type2">to eat</div>
+	  <div class="item type2">to play</div>
+	  <div class="item type2">to go</div>
+	  <div class="item type2">help</div>
+	  <div class="item type2">potty</div>
+	  <div class="item type2 type3">please stop</div>
+    <div class="item type2">hungry</div>
+    <div class="item type2">thirsty</div>
+    <div class="item type3">quickly</div>
+	  <div class="item type3">now</div>
+	</div>
+	
+  </body>
+</html>
