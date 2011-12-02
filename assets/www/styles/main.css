@@ -1,0 +1,108 @@
+body {
+	background-image: url(../backgrounds/project_papper.png);
+	font-family: Arial;
+}
+#container {
+    width: 100%;
+}
+.isotope-item {
+	z-index: 2;
+}
+
+.isotope-hidden.isotope-item {
+	pointer-events: none;
+	z-index: 1;
+}
+
+/**** Isotope CSS3 transitions ****/
+
+.isotope,
+.isotope .isotope-item {
+  -webkit-transition-duration: 0.8s;
+     -moz-transition-duration: 0.8s;
+          transition-duration: 0.8s;
+}
+
+.isotope {
+  -webkit-transition-property: height, width;
+     -moz-transition-property: height, width;
+          transition-property: height, width;
+}
+
+.isotope .isotope-item {
+  -webkit-transition-property: -webkit-transform, opacity;
+     -moz-transition-property:    -moz-transform, opacity;
+          transition-property:         transform, opacity;
+}
+
+/**** disabling Isotope CSS3 transitions ****/
+
+.isotope.no-transition,
+.isotope.no-transition .isotope-item,
+.isotope .isotope-item.no-transition {
+  -webkit-transition-duration: 0s;
+     -moz-transition-duration: 0s;
+          transition-duration: 0s;
+}
+.item {
+  background-color: red;
+  margin: 5px;
+  padding: 5px;
+  width: 120px;
+  height: 75px;
+  font-size: 25px;
+  text-decoration: bold;
+  text-align:center;
+  padding-top: 40px;
+  border-radius: 5px;
+  font-family: Arial;
+  text-shadow: -1px -1px 0px rgba(0,0,0,0.15);
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.40);
+}
+
+#playMe {
+  width: 65%;
+  height: 70px;
+  font-size: 20px;
+  border: 0px;
+  font-family: Arial;
+}
+
+#speakButton {
+  height: 35px;
+  width: 100%;
+  font-size: 25px;
+  text-decoration: bold;
+  font-family: Arial;
+}
+#clearButton {
+	width: 100%;
+}
+.type1 {
+  background-color: #F15E00;
+  color: white;
+}
+.type2 {
+  background-color: #F19C28;
+  text-shadow: 0px 0px 0px;
+}
+.type3 {
+  background-color: #A12E33;
+  color: white;
+}
+.buttons {
+	float: right;
+	width: 30%;
+}
+
+#showAllButtons {
+	width: 100%;
+	font-size: 40px;
+	text-align: center;
+	padding-top: 50px;
+	color: #555;
+}
+
+.clear {
+	clear: both;
+}
